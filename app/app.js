@@ -1,22 +1,24 @@
+const wrapper = require("./helpers/wrapper");
 const express = require("express");
+const error = require("./helpers/error");
 
 const app = express();
 
-app.get("/products", (req, res) => {
-  try {
-    throw new Error("myError");
-  } catch (error) {
-    res.status(500).json({ message: "products" });
-  }
-});
+app.get(
+  "/products",
+  wrapper((req, res) => {
+    const happenedError = error(401, "Error_1");
+    throw happenedError;
+  })
+);
 
-app.get("/users", (req, res) => {
-  try {
-    throw new Error("myError");
-  } catch (error) {
-    res.status(500).json({ message: "users" });
-  }
-});
+app.get(
+  "/users",
+  wrapper((req, res) => {
+    const happenedError = error(501, "Error_2");
+    throw happenedError;
+  })
+);
 
 app.use((_, res) => {
   res.status(404).json({ message: "not found" });
