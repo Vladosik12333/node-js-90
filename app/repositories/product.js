@@ -15,8 +15,23 @@ const getById = async (id) => {
   return product;
 };
 
+const deleteById = async (id) => {
+  const product = await Product.findByIdAndDelete(id);
+  return product;
+};
+
+const updateById = async (id, newProductBody) => {
+  const product = await Product.findByIdAndUpdate(id, newProductBody, {
+    new: true,
+  });
+
+  return product;
+};
+
 module.exports = {
   getAll,
   create,
-  getById
+  getById,
+  deleteById,
+  updateById,
 };

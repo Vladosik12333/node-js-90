@@ -19,8 +19,26 @@ const getById = async (id) => {
   return product;
 };
 
+const deleteById = async (id) => {
+  const product = await repository.deleteById(id);
+  if (!product) {
+    throw error(400, `Product with ${id} not found`);
+  }
+  return product;
+};
+
+const updateById = async (id, body) => {
+  const product = await repository.updateById(id, body);
+  if (!product) {
+    throw error(400, `Product with ${id} not found`);
+  }
+  return product;
+};
+
 module.exports = {
   getAll,
   create,
-  getById
+  getById,
+  deleteById,
+  updateById,
 };
