@@ -7,11 +7,16 @@ const getAll = async () => {
 
 const create = async (product) => {
   const productCreated = await Product.create(product);
-  console.log(productCreated);
   return productCreated;
+};
+
+const getById = async (id) => {
+  const product = await Product.findById(id);
+  return product;
 };
 
 module.exports = {
   getAll,
   create,
+  getById
 };
