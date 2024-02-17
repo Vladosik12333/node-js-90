@@ -1,6 +1,6 @@
 const app = require("./app/app");
-const {DB_LINK,PORT} = require('./app/config')
-const mongoose = require('mongoose')
+const { DB_LINK, PORT } = require("./app/config");
+const mongoose = require("mongoose");
 
 mongoose
   .connect(DB_LINK)
@@ -19,5 +19,3 @@ mongoose
     console.log("Error with connect to database", err);
     process.exit(1);
   });
-
-
