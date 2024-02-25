@@ -30,14 +30,11 @@ const orderSchema = new Schema(
 
 const createOrderSchema = Joi.object({
   products: Joi.array().required(),
-  price: Joi.number().required(),
-  quantity: Joi.number().required(),
   comments: Joi.string().default(null),
   address: Joi.string().required(),
   email: Joi.string().required(),
   phone: Joi.string().required(),
   name: Joi.string().required(),
-  status: Joi.boolean().default(false),
 });
 
 const Order = model("order", orderSchema);
