@@ -5,6 +5,7 @@ const logger = require("morgan");
 const cors = require("cors");
 const productsRoute = require("./routes/product");
 const orderRoute = require("./routes/order");
+const adminRoute = require("./routes/admin");
 const app = express();
 
 app.use(logger("dev"));
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use("/product", productsRoute);
 
 app.use("/order", orderRoute);
+app.use("/admin", adminRoute);
 
 app.use((error, req, res, next) => {
   const { message = "server internal error", status = 500 } = error;

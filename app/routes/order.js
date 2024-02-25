@@ -8,12 +8,13 @@ const {
 const wrapper = require("../helpers/wrapper");
 const controller = require("../controllers/order");
 const validationParams = require("../helpers/validationParams");
+const auth = require("../middlewares/auth");
 
 const route = express.Router();
 
 route.post("/", validationBody(createOrderSchema), wrapper(controller.create));
 
-route.get("/", wrapper(controller.getAll));
+route.get("/", auth, wrapper(controller.getAll));
 
 route.get(
   "/:orderId",
@@ -23,12 +24,14 @@ route.get(
 
 route.delete(
   "/:orderId",
+  auth,
   validationParams(getOrderByIdSchema),
   wrapper(controller.deleteById)
 );
 
 route.put(
   "/:orderId",
+  auth,
   validationParams(getOrderByIdSchema),
   validationBody(updateOrderSchema),
   wrapper(controller.updateById)
