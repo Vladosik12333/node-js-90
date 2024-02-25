@@ -41,5 +41,20 @@ const getOrderByIdSchema = Joi.object({
   orderId: Joi.objectId().required(),
 });
 
+const updateOrderSchema = Joi.object({
+  status: Joi.boolean().required(),
+  products: Joi.array().required(),
+  comments: Joi.string().default(null),
+  address: Joi.string().required(),
+  email: Joi.string().required(),
+  phone: Joi.string().required(),
+  name: Joi.string().required(),
+});
+
 const Order = model("order", orderSchema);
-module.exports = { Order, createOrderSchema, getOrderByIdSchema };
+module.exports = {
+  Order,
+  createOrderSchema,
+  getOrderByIdSchema,
+  updateOrderSchema,
+};

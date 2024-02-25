@@ -20,4 +20,11 @@ const deleteById = async (orderId) => {
   return order;
 };
 
-module.exports = { create, getAll, getById, deleteById };
+const updateById = async (orderId, orderBody) => {
+  const order = await Order.findByIdAndUpdate(orderId, orderBody, {
+    new: true,
+  });
+  return order;
+};
+
+module.exports = { create, getAll, getById, deleteById, updateById };

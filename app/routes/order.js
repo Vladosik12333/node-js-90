@@ -1,6 +1,10 @@
 const express = require("express");
 const validationBody = require("../helpers/validationBody");
-const { createOrderSchema, getOrderByIdSchema } = require("../models/order");
+const {
+  createOrderSchema,
+  getOrderByIdSchema,
+  updateOrderSchema,
+} = require("../models/order");
 const wrapper = require("../helpers/wrapper");
 const controller = require("../controllers/order");
 const validationParams = require("../helpers/validationParams");
@@ -21,6 +25,13 @@ route.delete(
   "/:orderId",
   validationParams(getOrderByIdSchema),
   wrapper(controller.deleteById)
+);
+
+route.put(
+  "/:orderId",
+  validationParams(getOrderByIdSchema),
+  validationBody(updateOrderSchema),
+  wrapper(controller.updateById)
 );
 
 module.exports = route;
