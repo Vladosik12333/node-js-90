@@ -10,4 +10,14 @@ const getAll = async () => {
   return orders;
 };
 
-module.exports = { create, getAll };
+const getById = async (orderId) => {
+  const order = await Order.findById(orderId).populate("products");
+  return order;
+};
+
+const deleteById = async (orderId) => {
+  const order = await Order.findByIdAndDelete(orderId);
+  return order;
+};
+
+module.exports = { create, getAll, getById, deleteById };

@@ -10,4 +10,14 @@ const getAll = async (_, res) => {
   res.status(200).json({ orders });
 };
 
-module.exports = { create, getAll };
+const getById = async (req, res) => {
+  const order = await services.getById(req.params.orderId);
+  res.status(200).json({ order });
+};
+
+const deleteById = async (req, res) => {
+  const order = await services.deleteById(req.params.orderId);
+  res.status(200).json({ order });
+};
+
+module.exports = { create, getAll, getById, deleteById };

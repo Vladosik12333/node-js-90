@@ -37,5 +37,9 @@ const createOrderSchema = Joi.object({
   name: Joi.string().required(),
 });
 
+const getOrderByIdSchema = Joi.object({
+  orderId: Joi.objectId().required(),
+});
+
 const Order = model("order", orderSchema);
-module.exports = { Order, createOrderSchema };
+module.exports = { Order, createOrderSchema, getOrderByIdSchema };
